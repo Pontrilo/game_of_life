@@ -19,9 +19,9 @@ class GameOfLife:
         for i in range(0, self.n):
             for j in range(0, self.n):
                 if random.randint(0, 100) < 15:
-                    self.old_grid[i][j] = 1
+                    self.ogrid[i][j] = 1
                 else:
-                    self.old_grid[i][j] = 0
+                    self.ogrid[i][j] = 0
         """
 
     def alive_neighbours(self, i, j):
@@ -38,8 +38,10 @@ class GameOfLife:
                     neighbours += self.ogrid[0][y]
                 elif x != self.n and y == self.n:
                     neighbours += self.ogrid[x][0]
-                else:
+                elif x == self.n and y == self.n:
                     neighbours += self.ogrid[0][0]
+                else:
+                    print("you are missing some neighbours")  # Check for missing neighbours
         return neighbours  # Return the total amount of neighbours
 
     def running(self):
